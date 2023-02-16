@@ -163,11 +163,15 @@ extension SpreadsheetView {
         guard numberOfRows >= 0 else {
             fatalError("`numberOfRows(in:)` must return a value greater than or equal to 0")
         }
-        guard frozenColumns <= numberOfColumns else {
-            fatalError("`frozenColumns(in:) must return a value less than or equal to `numberOfColumns(in:)`")
+        if numberOfColumns > 0 {
+            guard frozenColumns <= numberOfColumns else {
+                fatalError("`frozenColumns(in:) must return a value less than or equal to `numberOfColumns(in:)`")
+            }
         }
-        guard frozenRows <= numberOfRows else {
-            fatalError("`frozenRows(in:) must return a value less than or equal to `numberOfRows(in:)`")
+        if numberOfRows > 0 {
+            guard frozenRows <= numberOfRows else {
+                fatalError("`frozenRows(in:) must return a value less than or equal to `numberOfRows(in:)`")
+            }
         }
 
         let mergedCells = dataSource.mergedCells(in: self)
